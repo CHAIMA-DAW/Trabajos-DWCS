@@ -17,8 +17,8 @@ $contactos = isset($_POST['contactos']) ? json_decode($_POST['contactos'], true)
 
 // Procesa el formulario al pulsar "Añadir Contacto"
 if (isset($_POST['aniadir'])) {
-    $nombre = $_POST['nombre'];
-    $telefono = $_POST['telefono'];
+    $nombre = trim($_POST['nombre']);
+    $telefono = trim($_POST['telefono']);
 //Validacion del campo nombre
     if (empty($nombre)) {
         $aviso = "El Nombre es Obligatorio!!!";
