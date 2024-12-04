@@ -8,40 +8,13 @@ require_once 'AlumnoESO.php';
 require_once 'AlumnoBachillerato.php';
 require_once 'AlumnoFP.php';
 
+$tiposPersonas = ["Administrativo", "Conserje", "PersonalLimpieza", "Profesor", "AlumnoESO", "AlumnoBachillerato", "AlumnoFP"];
 // Crear un array de 100 objetos al azar
 $personas = [];
 for ($i = 0; $i < 100; $i++) {
-    $personas[] = Persona::generarAlAzar();
+    $personas[] = array_rand(array_flip($tiposPersonas))::generarAlAzar();
 }
 
-// Contar cuántos objetos se crearon de cada clase
-$contador = [
-    'Administrativo' => 0,
-    'Conserje' => 0,
-    'PersonalLimpieza' => 0,
-    'Profesor' => 0,
-    'AlumnoESO' => 0,
-    'AlumnoBachillerato' => 0,
-    'AlumnoFP' => 0,
-];
-// Contar los objetos creados por clase
-foreach ($personas as $persona) {
-    if ($persona instanceof Administrativo) {
-        $contador['Administrativo']++;
-    } elseif ($persona instanceof Conserje) {
-        $contador['Conserje']++;
-    } elseif ($persona instanceof PersonalLimpieza) {
-        $contador['PersonalLimpieza']++;
-    } elseif ($persona instanceof Profesor) {
-        $contador['Profesor']++;
-    } elseif ($persona instanceof AlumnoESO) {
-        $contador['AlumnoESO']++;
-    } elseif ($persona instanceof AlumnoBachillerato) {
-        $contador['AlumnoBachillerato']++;
-    } elseif ($persona instanceof AlumnoFP) {
-        $contador['AlumnoFP']++;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -103,26 +76,16 @@ foreach ($personas as $persona) {
 
         <div>
             <h2>Número de objetos creados de cada clase</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Clase</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($contador as $clase => $cantidad): ?>
-                    <tr>
-                        <td><?php echo $clase; ?></td>
-                        <td><?php echo $cantidad; ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <?php
+                foreach ($tiposPersonas as $tipo) {
+                    echo "<p>Instancias de $tipo: " . $tipo::numeroObjetosCreado() . "</p>";
+                }
+            ?>
         </div>
-
+      
+        </div>
         <div>
-            <h2>Datos Personales de cada persona</h2>
+                <h2>Datos Personales de cada persona</h2>
             <?php foreach ($personas as $persona): ?>
             <div class="person-info">
                 <h3>Persona</h3>

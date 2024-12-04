@@ -16,6 +16,7 @@ class Administrativo extends Persona {
     public function __construct($nombre, $apellido1, $apellido2, $fechaNacimiento, $dni, $direccion, $telefono, $sexo, $añosServicio) {
         parent::__construct($nombre, $apellido1, $apellido2, $fechaNacimiento, $dni, $direccion, $telefono, $sexo);
         $this->añosServicio = $añosServicio;
+        self::$contador++;
     }
 
         /**
@@ -44,7 +45,7 @@ class Administrativo extends Persona {
         return $this->sexo == "M" ? "Soy un administrativo y estoy trabajando." : "Soy una administrativa y estoy trabajando.";
     }
 
-       /**
+     /**
      * Método estático generarAlAzar.
      * Genera una instancia de Persona con datos aleatorios.
      */
@@ -59,12 +60,8 @@ class Administrativo extends Persona {
         $direccion = "Calle Falsa 123";
         $telefono = "+34 " . rand(600000000, 699999999);
         $sexo = rand(0, 1) ? "M" : "F";
-        
-        return new Administrativo ( 
-                $nombre, $apellido1, $apellido2, $fechaNacimiento, $dni, $direccion, $telefono, $sexo, 
-                rand(1, 30), $ciclosFormativos[array_rand($ciclosFormativos)], rand(1, 2), chr(rand(65, 68))
-        ); 
-       
+
+        return new Administrativo($nombre, $apellido1, $apellido2, $fechaNacimiento, $dni, $direccion, $telefono, $sexo, rand(1, 30));
     }
 }
 
