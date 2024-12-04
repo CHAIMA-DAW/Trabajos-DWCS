@@ -6,6 +6,8 @@ require_once 'Persona.php';
  * Representa a los de Alumnado de Formación Profesional de la comunidad educativa.
  */
 class AlumnoFP extends Persona {
+    private static $contador = 0;
+
     private $cicloFormativo;//Atributo especifico para añadir ciclo
     private $curso; //Atributo especifico para añadir curso
     private $grupo;//Atributo especifico para añadir grupo
@@ -19,6 +21,15 @@ class AlumnoFP extends Persona {
         $this->curso = $curso;
         $this->grupo = $grupo;
     }
+
+    /**
+    * Método estático numeroObjetosCreado.
+    * Devuelve la cantidad de objetos creados de esta clase.
+    */
+    public static function numeroObjetosCreado() {
+        return self::$contador;
+    }
+
     /**
      * Método __toString.
      * Devuelve una representación en texto de la instancia de AlumnadoBach

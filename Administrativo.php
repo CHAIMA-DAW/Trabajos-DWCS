@@ -6,6 +6,8 @@ require_once 'Persona.php';
  * Representa a los administrativos de la comunidad educativa.
  */
 class Administrativo extends Persona {
+    private static $contador = 0;
+
     private $añosServicio; //Atributo especifico para añadir años de servicio
     /**
      * Constructor de Administrativo.
@@ -15,6 +17,15 @@ class Administrativo extends Persona {
         parent::__construct($nombre, $apellido1, $apellido2, $fechaNacimiento, $dni, $direccion, $telefono, $sexo);
         $this->añosServicio = $añosServicio;
     }
+
+        /**
+    * Método estático numeroObjetosCreado.
+    * Devuelve la cantidad de objetos creados de esta clase.
+    */
+    public static function numeroObjetosCreado() {
+        return self::$contador;
+    }
+
     /**
      * Método __toString.
      * Devuelve una representación en texto de la instancia de Administrativo.
@@ -31,6 +42,29 @@ class Administrativo extends Persona {
      */
     public function trabajar() {
         return $this->sexo == "M" ? "Soy un administrativo y estoy trabajando." : "Soy una administrativa y estoy trabajando.";
+    }
+
+       /**
+     * Método estático generarAlAzar.
+     * Genera una instancia de Persona con datos aleatorios.
+     */
+    public static function generarAlAzar() {
+        $nombres = ["Juan", "María", "Pedro", "Ana"];
+        $apellidos = ["García", "López", "Martínez", "Sánchez"];
+        $nombre = $nombres[array_rand($nombres)];
+        $apellido1 = $apellidos[array_rand($apellidos)];
+        $apellido2 = $apellidos[array_rand($apellidos)];
+        $fechaNacimiento = rand(1, 28) . '/' . rand(1, 12) . '/' . rand(1980, 2010);
+        $dni = rand(10000000, 99999999) . '-' . chr(rand(65, 90));
+        $direccion = "Calle Falsa 123";
+        $telefono = "+34 " . rand(600000000, 699999999);
+        $sexo = rand(0, 1) ? "M" : "F";
+        
+        return new Administrativo ( 
+                $nombre, $apellido1, $apellido2, $fechaNacimiento, $dni, $direccion, $telefono, $sexo, 
+                rand(1, 30), $ciclosFormativos[array_rand($ciclosFormativos)], rand(1, 2), chr(rand(65, 68))
+        ); 
+       
     }
 }
 
