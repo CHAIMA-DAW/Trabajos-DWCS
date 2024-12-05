@@ -76,8 +76,7 @@ class Profesor extends Persona {
         $materias = ["Matemáticas", "Lengua", "Historia"];
         $cargoDirectivo = ["ninguno", "dirección", "secretariado", "jefatura estudios diurno", "jefatura estudios personas adultas", "vicedirección"];  // Seleccionar materia, cargo directivo aleatorio
     
-        new Profesor($nombre, $apellido1, $apellido2, $fechaNacimiento, $dni, $direccion, $telefono, $sexo, 
-            rand(1, 30), $materias[array_rand($materias)], $cargoDirectivo[array_rand($cargoDirectivo)]);
+        return new Profesor($nombre, $apellido1, $apellido2, $fechaNacimiento, $dni, $direccion, $telefono, $sexo, rand(1, 30), $materias[array_rand($materias)], $cargoDirectivo[array_rand($cargoDirectivo)]);
 
     }
 }

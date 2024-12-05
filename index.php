@@ -1,4 +1,8 @@
 <?php
+    // Debug:
+    ob_end_flush();
+    ob_implicit_flush(true);
+    // End Debug
 // Importa las clases necesarias
 require_once 'Administrativo.php';
 require_once 'Conserje.php';
@@ -10,9 +14,11 @@ require_once 'AlumnoFP.php';
 
 $tiposPersonas = ["Administrativo", "Conserje", "PersonalLimpieza", "Profesor", "AlumnoESO", "AlumnoBachillerato", "AlumnoFP"];
 // Crear un array de 100 objetos al azar
+$profe = Profesor::generarAlAzar();
 $personas = [];
 for ($i = 0; $i < 100; $i++) {
-    $personas[] = array_rand(array_flip($tiposPersonas))::generarAlAzar();
+    $tipo = array_rand(array_flip($tiposPersonas));
+    $personas[] = $tipo::generarAlAzar();
 }
 
 ?>
@@ -123,7 +129,8 @@ for ($i = 0; $i < 100; $i++) {
                     <!-- Llamar al método trabajar() para cada objeto-->
                 <p><strong>Acción:</strong> <?php echo $persona->trabajar(); ?></p>
             </div>
-            <?php endforeach; ?>
+            <?php endforeach; 
+            echo ""?>
         </div>
     </div>
 </body>
